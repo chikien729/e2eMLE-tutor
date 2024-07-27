@@ -29,7 +29,7 @@ list_of_files = [
 for filepath in list_of_files:
     filepath = Path(filepath)
     filedir, filename = os.path.split(filepath)
-    
+     
     if filedir != '':
         os.makedirs(filedir, exist_ok=True)
         logging.info(f"Creating diretory: {filedir} for the file: {filename}")
@@ -37,4 +37,4 @@ for filepath in list_of_files:
         with open(filepath, 'w') as f:
             logging.info(f"Creating empty file: {filepath}")
     else:
-        logging.info(f"{filename} is already exists") 
+        logging.info(f"{filename} is already exists")
