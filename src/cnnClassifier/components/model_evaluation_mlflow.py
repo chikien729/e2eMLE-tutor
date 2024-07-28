@@ -5,7 +5,7 @@ import mlflow.keras
 from urllib.parse import urlparse
 from cnnClassifier.utils.common import save_json
 from cnnClassifier.entity.config_entity import EvaluationConfig
-
+import dagshub
 
 
 class Evaluation:
@@ -55,11 +55,12 @@ class Evaluation:
 
     
     def log_into_mlflow(self):
+        dagshub.init(repo_owner='chikien729', repo_name='e2eMLE-tutor', mlflow=True)
         mlflow.set_tracking_uri(self.config.mlflow_uri)
         mlflow.set_registry_uri(self.config.mlflow_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
-        
-        with mlflow.start_run():
+
+        with mlflow.start_run() as run:
             mlflow.log_params(self.config.all_params)
             mlflow.log_metrics(
                 {"loss": self.score[0], "accuracy": self.score[1]}

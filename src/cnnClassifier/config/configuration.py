@@ -11,6 +11,7 @@ class ConfigurationManager:
         self.params = read_yaml(params_filepath)
         
         create_directories([self.config.artifacts_root])
+    
         
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         config = self.config.data_ingestion
@@ -23,6 +24,7 @@ class ConfigurationManager:
         )
         
         return data_ingestion_config
+    
     
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model
@@ -64,10 +66,11 @@ class ConfigurationManager:
         return training_config
     
     def get_evaluation_config(self) -> EvaluationConfig:
+        
         eval_config = EvaluationConfig(
             path_of_model="artifacts/training/model.h5",
             training_data="artifacts/data_ingestion/kidney-ct-scan-image",
-            mlflow_uri="https://dagshub.com/chikien729/e2eMLE-tutor.mlflow",
+            mlflow_uri=self.config.mlflow_uri,
             all_params=self.params,
             params_image_size=self.params.IMAGE_SIZE,
             params_batch_size=self.params.BATCH_SIZE
