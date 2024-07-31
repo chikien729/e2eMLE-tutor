@@ -22,12 +22,12 @@ You can find this repo's guidance video at [this link](https://www.youtube.com/w
 Clone the repository
 
 ```bash
-https://github.com/krishnaik06/Kidney-Disease-Classification-Deep-Learning-Project
+https://github.com/chikien729/e2eMLE-tutor
 ```
 ### STEP 01- Create a conda environment after opening the repository
 
 ```bash
-conda create -n cnncls python=3.8 -y
+conda create -n tutor python=3.8 -y
 ```
 
 ```bash
